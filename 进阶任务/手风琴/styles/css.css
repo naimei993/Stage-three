@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.all{
+    margin-top: 15%;
+    height: 400px;
+    width: 1000px;
+    display: flex;
+    
+}
+.card{
+height: 100%;
+width: 100px;
+
+transition:width 1s;
+
+}
+#active{
+    width: 600px;
+}

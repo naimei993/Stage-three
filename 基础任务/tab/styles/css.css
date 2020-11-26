@@ -1,0 +1,35 @@
+.tab {
+	height:23px;
+}
+.tab ul {
+	list-style:none;
+}
+.tab li {
+	border:1px solid #ccc;
+	background:#eee;
+	cursor:pointer; /*改变鼠标指针样式*/
+	display:block;
+    float:left;
+    position:relative;
+	text-align:center;
+	text-decoration:none;
+	width:10em;
+	font-size:12px;
+	height:1.8em;
+	line-height:1.8em;
+	margin-right:5px;
+}
+.tab li:hover {
+	text-decoration:underline;
+}
+.tab li.curr {
+	background:#fff;
+	border-bottom-color:#fff;
+	cursor:default;
+	font-weight:bold;
+}
+.cc {
+	border:1px solid #ccc;
+    padding:10px;
+    width: 27.5em;
+}

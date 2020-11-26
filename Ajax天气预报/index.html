@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles\css.css">
+    <title>天气预报</title>
+</head>
+<body>
+  
+    <div class="nav">
+        <input type="text" value="请输入您要查询地点" style="color: #999"onfocus="if(this.value =='请输入您要查询地点'){this.value='';this.style.color = '#424242'}" onblur="if(this.value==''){this.value='请输入您要查询地点'}"
+    }>
+        <button onmouseover="sedMsg()" onmouseout="shuchu()">查询</button>
+    </div>
+    <div class = "top"></div>
+    <div class = "bottom">
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="yesterday"></div>
+        
+    </div>
+    
+ 
+    <script src="../Ajax天气预报/styles/tq.js">
+    </script>
+</body>
+</html>

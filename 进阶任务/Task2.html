@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>Task2</title>
+    <style>
+        ul{
+            
+            margin-left: -50px;
+            display: flex;
+            align-items: flex-end;
+            
+        }
+           
+        ul li{
+            display: inline;
+            list-style-type: none;
+            background-color: red;
+            margin-left: 5px;
+            
+        }
+        input:focus{
+            outline: 2px solid rebeccapurple;
+        }
+        button:focus{
+            background-color:rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id = "input">
+    <button class="one">左侧入</button>
+    <button class="two">右侧入</button>
+    <button class= "three">左侧出</button>
+    <button class="four">右侧出</button>
+    <button class="five">排序</button>
+    <button class="six">随机50</button>
+    interval(ms):<input type="text" id = "input1" value="10">
+    
+    <ul></ul>
+
+    <script type="text/javascript">
+     var ul = document.getElementsByTagName('ul')[0];
+    var input  = document.getElementById('input');
+    var LeftInput = document.getElementsByClassName('one')[0];
+    var RightInput = document.getElementsByClassName('two')[0];
+    var LeftOutput = document.getElementsByClassName('three')[0];
+    var RightOuyput = document.getElementsByClassName('four')[0];
+    var Sort = document.getElementsByClassName('five')[0];
+    var Random = document.getElementsByClassName('six')[0];
+    var screenHeight = innerHeight;
+    var screenWeight =  innerWidth;
+    ul.style.width = screenWeight + "px";
+    ul.style.height = screenHeight*0.9 + "px";
+    //四个按钮点击事件
+LeftInput.onclick=function(){
+      if(ul.children.length >=50){
+        alert("最多只能输入50个！")
+      }else{
+        leftinsert();
+      }
+      
+  }
+  RightInput.onclick=function(){
+    if(ul.children.length >=50){
+        alert("最多只能输入50个！")
+      }else{
+        rightinsert();
+      }
+     
+  }
+  LeftOutput.onclick=function(){
+   
+      leftdel();
+  }
+
+  RightOuyput.onclick=function(){
+   
+      rightdel();
+  }
+  Sort.onclick=function(){
+     
+    sortnum();
+}
+  Random.onclick = function(){
+    
+      randomNum();
+  }
+  
+  //实现四个点击事件函数
+  function leftinsert(){
+      if(input.value == "" ||isNaN(input.value)){
+         alert('请输入数字');
+         input.focus();//输入框焦点
+
+      }else if(input.value>100 || input.value<10){
+        alert('请输入范围在10-100范围的数字');
+         input.focus();//输入框焦点
+      }
+      else {
+          var li = document.createElement("li");
+          li.style.height = (input.value)*8 + "px";
+          li.style.width = parseInt(screenWeight*0.9/50) + "px";
+          if(ul.children.length ==0){
+              ul.appendChild(li)
+          }else{
+              ul.insertBefore(li,ul.firstChild);
+              
+          }
+        
+         
+          
+      }
+  }
+    function rightinsert(){
+      if(input.value == "" ||isNaN(input.value)){
+         alert('请输入数字');
+         input.focus();
+
+      }else if(input.value>100 || input.value<10){
+        alert('请输入范围在10-100范围的数字');
+         input.focus();//输入框焦点
+      }
+      else{
+          var li = document.createElement("li");
+              ul.appendChild(li);
+              li.style.height = (input.value)*8 + "px";
+              li.style.width = parseInt(screenWeight*0.9/50) + "px";
+              ul.appendChild(li);
+      }
+  }
+
+    function leftdel(){
+      if(ul.childNodes.length ==0){
+          alert("没有元素可以删除")
+      }else{
+          ul.removeChild(ul.firstChild);
+      }
+     
+  }
+
+    function rightdel(){
+      if(ul.childNodes.length ==0){
+          alert("没有元素可以删除");
+      }else{
+          ul.removeChild(ul.lastChild);
+      }
+  }
+    
+    function randomNum(){
+        var len = ul.children.length;
+        for(var i=0; i<len; i++){
+        ul.removeChild(ul.lastChild);
+    }
+    for(var i=0; i<50; i++){
+        var ran = parseInt(Math.random()*(100-10)+10);
+        var li = document.createElement("li");
+          li.style.height = ran*8 + "px";
+          li.style.width = parseInt(screenWeight*0.9/50) + "px";
+          ul.appendChild(li);
+    }
+}
+    function sortnum(){
+        var len1 = ul.children.length;
+        
+        var date = [];
+        var list = document.getElementsByTagName('li');
+        if(ul.children.length == 0){
+            alert("您还没有输入！")
+        }
+        else{
+            for(var i=0; i<len1; i++){
+                var num =  parseInt(list[i].style.height);
+                date.push(num);
+            }
+        }
+        
+        date.sort(function(x,y){
+            return x-y;
+        });
+        var len = date.length;
+        
+        for(var i=0; i<len1; i++){
+        ul.removeChild(ul.firstChild);
+    }
+        for(var i=0; i<len; i++){
+            var li = document.createElement("li");
+            li.style.height = date[i] + "px";
+            li.style.width = (screenWeight*0.9/50) + "px";
+            ul.appendChild(li);
+        }
+        
+    }
+    
+    
+    </script>
+</body>
+</html>

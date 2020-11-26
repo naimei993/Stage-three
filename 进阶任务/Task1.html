@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            margin-top: 30px;
+            margin-left: -40px;
+        }
+        ul li{
+            list-style-type: none;
+            display: inline;
+            background-color: red;
+            color: white;
+            margin-right: 10px;
+           padding: 20px;
+           font-size: 30px;
+        }
+        input:focus{
+            outline: 2px solid rebeccapurple;
+        }
+        button:focus{
+            background-color:rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id = "input">
+    <button class="one">左侧入</button>
+    <button class="two">右侧入</button>
+    <button class= "three" style="margin-left: 50px ;">左侧出</button>
+    <button class="four">右侧出</button>
+    <ul></ul>
+    <script type="text/javascript">
+    //获取各个元素节点
+    var ul = document.getElementsByTagName('ul')[0];
+    var input  = document.getElementById('input');
+    var LeftInput = document.getElementsByClassName('one')[0];
+    var RightInput = document.getElementsByClassName('two')[0];
+    var LeftOutput = document.getElementsByClassName('three')[0];
+    var RightOuyput = document.getElementsByClassName('four')[0];
+   
+    //点击某个元素就删除某个元素
+    ul.onclick = function(e){
+        var event = e || window.event;
+        var target = event.target ||event.srcElement;//事件源对象处理
+        var a = target.innerHTML;
+        console.log(a);
+        var li = document.getElementsByTagName('li');
+        for(var i = 0;i<li.length;i++){
+            if(li[i].innerHTML == target.innerHTML){
+                ul.removeChild(ul.childNodes[i]);
+            }
+        }
+        
+    }
+   //四个按钮点击事件
+    LeftInput.onclick=function(){
+      
+        leftinsert();
+    }
+    RightInput.onclick=function(){
+     
+        rightinsert();
+    }
+    LeftOutput.onclick=function(){
+     
+        leftdel();
+    }
+    RightOuyput.onclick=function(){
+     
+        rightdel();
+    }
+    
+    //实现四个点击事件函数
+    function leftinsert(){
+        if(input.value == "" ||isNaN(input.value)){
+           alert('请输入数字');
+           input.focus();//输入框焦点
+
+        }else{
+            var li = document.createElement("li");
+            li.innerHTML = input.value;
+            if(ul.children.length ==0){
+                ul.appendChild(li)
+            }else{
+                ul.insertBefore(li,ul.firstChild);
+            }
+          
+           
+            
+        }
+    }
+    function rightinsert(){
+        if(input.value == "" ||isNaN(input.value)){
+           alert('请输入数字');
+           input.focus();
+
+        }else{
+            var li = document.createElement("li");
+            li.innerHTML = input.value;
+            ul.appendChild(li)
+        }
+    }
+
+    function leftdel(){
+        if(ul.childNodes.length ==0){
+            alert("没有元素可以删除")
+        }else{
+            alert(ul.firstChild.innerHTML);
+            ul.removeChild(ul.firstChild);
+        }
+       
+    }
+
+    function rightdel(){
+        if(ul.childNodes.length ==0){
+            alert("没有元素可以删除")
+        }else{
+            alert(ul.lastChild.innerHTML);
+            ul.removeChild(ul.lastChild);
+        }
+    }
+  
+    
+    
+    </script>
+</body>
+</html>

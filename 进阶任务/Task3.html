@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task3</title>
+    <style type="text/css">
+      ul{
+            margin-top: 20px;
+            margin-left: -40px;
+        }
+        ul li{
+            list-style-type: none;
+            display: inline;
+            background-color: rgb(255, 192, 203);
+            color: #000000;
+            margin-right: 5px;
+            padding: 5px 10px 8px 10px;
+            font-size: 30px;
+        }
+    textarea:focus{
+        outline: 2px solid rgb(196, 89, 206);
+    }
+    input:focus{
+        outline: 2px solid rgb(196, 89, 206);
+    }
+    .color{
+        background-color: rgb(255, 192, 203);
+    }
+    .color1{
+        
+        background-color: red;
+        
+    }
+    
+    </style>
+</head>
+<body>
+    <textarea rows="5" value="请输入字符并用不同符号分隔" style="color: #999" onfocus="if(this.value =='请输入字符并用不同符号分隔'){this.value='';this.style.color = '#424242'}" onblur="if(this.value==''){this.value='请输入字符并用不同符号分隔'}"
+ class="texTarea">请输入字符并用不同符号分隔</textarea>
+    <button type="text" value="插入" class="leftBtn">插入</button>
+    <button type="text" value="查询" class="rightBtn">查询</button>
+    <input type="text" class="inp">
+    <ul></ul>
+    <script type="text/javascript">
+    var leftBtn = document.getElementsByClassName('leftBtn')[0];
+    var rightBtn = document.getElementsByClassName('rightBtn')[0];
+    var texTarea =document.getElementsByClassName('texTarea')[0];
+    var Btn = document.getElementsByClassName('inp')[0];
+    var ul = document.getElementsByTagName('ul')[0];
+    leftBtn.onclick = function(){
+        leftbtn();
+    }
+    rightBtn.onclick =function(){
+        rightbtn();
+    }
+    function leftbtn(){
+        var val = texTarea.value;
+        if(val =="" || val == "请输入字符并用不同符号分隔"){
+            alert("请输入数值");
+            texTarea.focus();
+        }else{
+            var li = document.createElement("li");
+            var textarea = val.split(/\r|,|，|、|\t|\v|\s{1,}/);
+            var len = textarea.length;
+            var str = "";
+            for(var i = 0;i<len; i++){
+                str += '<li>' + textarea[i] + '</li>';
+            }
+                ul.innerHTML += str;
+        }
+    }
+    function rightbtn(){
+        var len = ul.childNodes.length;
+        var arr = [];
+        var btn = Btn.value
+        if(btn ==""){
+            alert("请输入要查询的值");
+            Btn.focus();
+        }else{
+            var li = document.getElementsByTagName('li');
+        for(var i = 0; i<len; i++){
+            ul.childNodes[i].className = "color";
+        }
+        
+        for(var i = 0; i < len; i++){
+            var vau = ul.childNodes[i].innerHTML;
+            arr.push(vau);
+        }
+        var len1 = arr.length;
+        for(var i = 0;i<len1;i++){
+            if(arr[i].match(btn)){
+                li[i].className = "color1";
+            }
+        }
+    }
+}
+    
+
+    </script>
+</body>
+</html>
